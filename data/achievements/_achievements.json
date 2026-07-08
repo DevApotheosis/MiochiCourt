@@ -11,8 +11,8 @@
     "achievement_id": "first_verdict",
     "name": "初次裁决",
     "description": "在法庭上完成第一次裁决",
-    "unlocked": false,
-    "unlocked_at": null,
+    "unlocked": true,
+    "unlocked_at": "2026-07-08T20:38:41.130478",
     "icon": null
   },
   {

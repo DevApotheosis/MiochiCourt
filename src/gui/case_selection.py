@@ -141,16 +141,15 @@ class CaseSelection(tk.Frame):
         
         self.case_manager.set_current_case(case_id)
         
+        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+        existing_progress = existing_save.case_progress if existing_save else {}
+        
         if case.status == 'completed':
             case.status = 'investigation'
             case.verdict_guilt = None
             case.verdict_reason = None
             case.evidence_manager.reset_evidence()
-        
-        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
-        existing_progress = existing_save.case_progress if existing_save else {}
-        
-        existing_progress[case_id] = {'status': 'investigation', 'evidence_collected': [], 'evidence_analyzed': []}
+            existing_progress[case_id] = {'status': 'investigation', 'evidence_collected': [], 'evidence_analyzed': []}
         
         self.save_manager.auto_save(
             player_name=self.character.name,

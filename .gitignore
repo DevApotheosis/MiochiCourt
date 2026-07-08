@@ -5,3 +5,6 @@ data/achievements/烟澪_achievements.json
 *__pycache__/
 *saves/
 test_output.txt
+*.pyd
+*.spec
+*create_dirs.py

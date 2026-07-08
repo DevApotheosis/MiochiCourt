@@ -26,7 +26,7 @@ class VerdictView(tk.Toplevel):
         main_frame.pack(fill=tk.BOTH, expand=True)
         
         scrollbar = ttk.Scrollbar(main_frame, orient=tk.VERTICAL)
-        canvas = tk.Canvas(main_frame, yscrollcommand=scrollbar.set, bg='#ffffff')
+        canvas = tk.Canvas(main_frame, yscrollcommand=scrollbar.set, bg='#f5f5f5', highlightthickness=0)
         scrollbar.config(command=canvas.yview)
         
         content_frame = ttk.Frame(canvas)
@@ -36,6 +36,7 @@ class VerdictView(tk.Toplevel):
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
         content_frame.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox('all')))
+        canvas.bind('<MouseWheel>', lambda e: canvas.yview_scroll(int(-1*(e.delta/120)), "units"))
         
         self._generate_verdict_document(content_frame)
         
@@ -95,9 +96,9 @@ class VerdictView(tk.Toplevel):
         fact_title.pack(fill=tk.X, pady=10)
         
         fact_text = tk.Text(doc_frame, wrap=tk.WORD, font=('宋体', 14), height=6,
-                            state=tk.DISABLED, bg='#ffffff')
+                            state=tk.DISABLED, bg='#ffffff', 
+                            relief=tk.FLAT, borderwidth=0, padx=5, pady=5)
         fact_text.pack(fill=tk.X, pady=5)
-        fact_text.bind('<MouseWheel>', lambda e, text=fact_text: text.yview_scroll(int(-1*(e.delta/120)), "units"))
         fact_text.config(state=tk.NORMAL)
         fact_text.insert(tk.END, self.case.description)
         fact_text.config(state=tk.DISABLED)
@@ -125,9 +126,9 @@ class VerdictView(tk.Toplevel):
         law_title.pack(fill=tk.X, pady=10)
         
         law_text = tk.Text(doc_frame, wrap=tk.WORD, font=('宋体', 14), height=4,
-                           state=tk.DISABLED, bg='#ffffff')
+                           state=tk.DISABLED, bg='#ffffff', 
+                           relief=tk.FLAT, borderwidth=0, padx=5, pady=5)
         law_text.pack(fill=tk.X, pady=5)
-        law_text.bind('<MouseWheel>', lambda e, text=law_text: text.yview_scroll(int(-1*(e.delta/120)), "units"))
         law_text.config(state=tk.NORMAL)
         
         if self.case.key_laws:
@@ -163,9 +164,9 @@ class VerdictView(tk.Toplevel):
         result_label.pack(fill=tk.X, pady=10)
         
         reason_text = tk.Text(doc_frame, wrap=tk.WORD, font=('宋体', 14), height=8,
-                              state=tk.DISABLED, bg='#ffffff')
+                              state=tk.DISABLED, bg='#ffffff', 
+                              relief=tk.FLAT, borderwidth=0, padx=5, pady=5)
         reason_text.pack(fill=tk.X, pady=5)
-        reason_text.bind('<MouseWheel>', lambda e, text=reason_text: text.yview_scroll(int(-1*(e.delta/120)), "units"))
         reason_text.config(state=tk.NORMAL)
         reason_text.insert(tk.END, self.reason)
         reason_text.config(state=tk.DISABLED)

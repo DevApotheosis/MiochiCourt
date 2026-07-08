@@ -136,13 +136,13 @@ class TestVerdictRoleBased(unittest.TestCase):
                                    {'evidence_points': 30, 'law_points': 25, 'witness_points': 18},
                                    75, player_role='prosecution')
         result = verdict_view._get_verdict_label()
-        self.assertEqual(result, '胜诉')
+        self.assertEqual(result, '被告有罪')
 
         verdict_view2 = VerdictView(None, case, 'innocent', '测试理由', 
                                     {'evidence_points': 5, 'law_points': 3, 'witness_points': 2},
                                     30, player_role='prosecution')
         result2 = verdict_view2._get_verdict_label()
-        self.assertEqual(result2, '败诉')
+        self.assertEqual(result2, '被告无罪')
 
 
 class TestCourtViewVerdictLogic(unittest.TestCase):
@@ -179,6 +179,10 @@ class TestCourtViewVerdictLogic(unittest.TestCase):
         court_view.player_role = 'defense'
         court_view.save_manager = Mock()
         court_view.save_manager.auto_save = Mock()
+        
+        mock_existing_save = Mock()
+        mock_existing_save.case_progress = {}
+        court_view.save_manager.get_save_by_id = Mock(return_value=mock_existing_save)
         court_view.character = Mock()
         court_view.character.name = '测试律师'
         court_view.character.add_experience = Mock()
@@ -234,6 +238,10 @@ class TestCourtViewVerdictLogic(unittest.TestCase):
         court_view.player_role = 'prosecution'
         court_view.save_manager = Mock()
         court_view.save_manager.auto_save = Mock()
+        
+        mock_existing_save = Mock()
+        mock_existing_save.case_progress = {}
+        court_view.save_manager.get_save_by_id = Mock(return_value=mock_existing_save)
         court_view.character = Mock()
         court_view.character.name = '测试律师'
         court_view.character.add_experience = Mock()

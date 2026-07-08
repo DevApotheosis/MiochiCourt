@@ -39,7 +39,8 @@ class GameSave:
         if not kwargs.get('save_id'):
             raise ValueError('save_id is required')
         
-        if not kwargs.get('player_name'):
+        player_name = kwargs.get('player_name')
+        if player_name is None:
             raise ValueError('player_name is required')
         
         case_status = kwargs.get('case_status')
@@ -90,7 +91,7 @@ class GameSave:
     def from_dict(cls, data):
         return cls(
             data['save_id'],
-            data['player_name'],
+            data.get('player_name', '玩家'),
             data.get('current_case_id'),
             data.get('case_status', 'investigation'),
             data.get('evidence_collected', []),

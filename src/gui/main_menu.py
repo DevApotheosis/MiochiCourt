@@ -72,73 +72,32 @@ class MainMenu(tk.Frame):
     
     def on_start_game(self):
         saved_name = self.config_manager.get_player_name()
-        
-        if saved_name and saved_name != '玩家':
+        if saved_name:
             self.character.name = saved_name
-            
-            self.save_manager.auto_save(
-                player_name=self.character.name,
-                current_case_id=None,
-                case_status='investigation',
-                evidence_collected=[],
-                evidence_analyzed=[],
-                witness_trust={},
-                dialogue_history=[],
-                game_time=0,
-                player_data=self.character.to_dict(),
-                case_progress={}
-            )
-            
-            self.achievement_manager.load_from_file(self.character.name)
-            
-            from .case_selection import CaseSelection
-            self.parent.show_view(CaseSelection)
-            return
+        else:
+            self.character.name = '玩家'
+            self.config_manager.set_player_name('玩家')
         
-        name_window = tk.Toplevel(self)
-        name_window.title('输入角色名称')
-        name_window.geometry('350x150')
-        name_window.grid_columnconfigure(0, weight=1)
+        self.achievement_manager.load_from_file(self.character.name)
         
-        ttk.Label(name_window, text='请输入你的律师名称：', font=('微软雅黑', 12)).grid(row=0, column=0, pady=10)
+        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+        existing_progress = existing_save.case_progress if existing_save else {}
         
-        name_var = tk.StringVar(value=self.character.name)
-        name_entry = ttk.Entry(name_window, textvariable=name_var, font=('微软雅黑', 12), width=20)
-        name_entry.grid(row=1, column=0, pady=5)
-        name_entry.focus()
+        self.save_manager.auto_save(
+            player_name=self.character.name,
+            current_case_id=None,
+            case_status='investigation',
+            evidence_collected=[],
+            evidence_analyzed=[],
+            witness_trust={},
+            dialogue_history=[],
+            game_time=0,
+            player_data=self.character.to_dict(),
+            case_progress=existing_progress
+        )
         
-        def confirm():
-            name = name_var.get().strip()
-            if name:
-                self.character.name = name
-                self.character.level = 1
-                self.character.experience = 0
-                self.config_manager.set_player_name(name)
-                name_window.destroy()
-                
-                self.save_manager.auto_save(
-                    player_name=self.character.name,
-                    current_case_id=None,
-                    case_status='investigation',
-                    evidence_collected=[],
-                    evidence_analyzed=[],
-                    witness_trust={},
-                    dialogue_history=[],
-                    game_time=0,
-                    player_data=self.character.to_dict(),
-                    case_progress={}
-                )
-                
-                self.achievement_manager.load_from_file(self.character.name)
-                
-                from .case_selection import CaseSelection
-                self.parent.show_view(CaseSelection)
-            else:
-                messagebox.showwarning('警告', '请输入角色名称')
-        
-        ttk.Button(name_window, text='确认', command=confirm).grid(row=2, column=0, pady=10)
-        
-        name_entry.bind('<Return>', lambda e: confirm())
+        from .case_selection import CaseSelection
+        self.parent.show_view(CaseSelection)
     
     def on_load_modules(self):
         from .module_manager_gui import ModuleManagerGUI

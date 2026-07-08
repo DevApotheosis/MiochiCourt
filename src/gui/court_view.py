@@ -146,6 +146,7 @@ class CourtView(tk.Frame):
         }
         
         self._setup_ui()
+        self._setup_shortcuts()
         self._judge_speak('start')
     
     def _setup_ui(self):
@@ -517,6 +518,17 @@ class CourtView(tk.Frame):
         self.character.update_stat('cases_completed', 1)
         self.character.update_stat('evidence_analyzed', len(self.current_case.evidence_manager.get_analyzed_evidence()))
         
+        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+        existing_progress = existing_save.case_progress if existing_save else {}
+        
+        existing_progress[self.current_case.case_id] = {
+            'status': 'completed',
+            'verdict': verdict,
+            'reason': reason,
+            'evidence_collected': [e.evidence_id for e in self.current_case.evidence_manager.get_collected_evidence()],
+            'evidence_analyzed': [e.evidence_id for e in self.current_case.evidence_manager.get_analyzed_evidence()]
+        }
+        
         self.save_manager.auto_save(
             player_name=self.character.name,
             current_case_id=self.current_case.case_id,
@@ -527,10 +539,7 @@ class CourtView(tk.Frame):
             dialogue_history=self.court_log,
             game_time=0,
             player_data=self.character.to_dict(),
-            case_progress={self.current_case.case_id: {'status': 'completed', 
-                'verdict': verdict, 'reason': reason,
-                'evidence_collected': [e.evidence_id for e in self.current_case.evidence_manager.get_collected_evidence()],
-                'evidence_analyzed': [e.evidence_id for e in self.current_case.evidence_manager.get_analyzed_evidence()]}}
+            case_progress=existing_progress
         )
         
         if verdict == 'innocent':
@@ -598,6 +607,14 @@ class CourtView(tk.Frame):
             '综合全案证据，无法排除被告作案嫌疑。'
         ]
         return random.choice(reasons)
+    
+    def _setup_shortcuts(self):
+        from ..core.config_manager import ConfigManager
+        config_manager = ConfigManager()
+        shortcuts = config_manager.get_shortcuts()
+        
+        self.bind(shortcuts['back'], lambda e: self.on_back())
+        self.bind(shortcuts['escape'], lambda e: self.on_back())
     
     def on_back(self):
         from .investigation_view import InvestigationView
