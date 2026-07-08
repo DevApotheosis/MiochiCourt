@@ -1,0 +1,19 @@
+{
+    "case_id": "case_copyright_001",
+    "title": "侵害计算机软件著作权纠纷案",
+    "description": "原告西某工业软件有限公司诉称被告广州沃某模具有限公司未经许可复制和商业使用其享有著作权的NX系列计算机软件，侵害了原告的软件著作权。案件的关键在于如何认定侵权软件数量以及如何确定赔偿数额，特别是被告妨害证据保全的行为应如何处理。",
+    "defendant": "广州沃某模具有限公司",
+    "plaintiff": "西某工业软件有限公司",
+    "location": "广州知识产权法院",
+    "time": "2026年2月28日",
+    "difficulty": 3,
+    "required_evidence": ["ev_copyright_001", "ev_copyright_002", "ev_copyright_003"],
+    "key_laws": ["law_copyright_001", "law_copyright_002", "law_copyright_003"],
+    "witnesses": ["陈经理", "李技术员", "王法官"],
+    "background": "西某工业软件有限公司是NX系列计算机软件的著作权人，该软件广泛应用于3D设计、数字仿真检测及辅助制造领域。广州沃某模具有限公司未经许可，在其办公电脑上安装并商业使用了大量该软件。证据保全过程中，被告采取拒不打开电脑、断电等方式妨害证据保全工作。",
+    "parties": {
+        "defendant": {"name": "广州沃某模具有限公司", "role": "被告"},
+        "plaintiff": {"name": "西某工业软件有限公司", "role": "原告"}
+    },
+    "tags": ["知识产权", "软件著作权", "民事纠纷"]
+}

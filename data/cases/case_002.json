@@ -1,0 +1,16 @@
+{
+  "case_id": "case_002",
+  "title": "数据泄露案",
+  "description": "被告被指控非法获取并泄露了澪地科技公司的商业机密数据。原告声称被告通过网络入侵手段窃取了公司数据库中的核心算法代码。被告辩称数据是公开可获取的，自己只是进行了合法的数据分析研究。",
+  "defendant": "陈静雯",
+  "plaintiff": "澪地科技有限公司",
+  "location": "澪地审判庭·第二法庭",
+  "time": "2026年8月20日",
+  "difficulty": 3,
+  "required_evidence": ["ev_004", "ev_005", "ev_006"],
+  "key_laws": ["law_003", "law_004"],
+  "witnesses": ["刘总监", "赵工程师", "孙律师"],
+  "verdict_guilt": null,
+  "verdict_reason": null,
+  "status": "investigation"
+}

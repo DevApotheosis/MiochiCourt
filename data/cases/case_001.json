@@ -1,0 +1,16 @@
+{
+  "case_id": "case_001",
+  "title": "虚拟货币盗窃案",
+  "description": "被告被指控在澪地交易所窃取价值500万澪币的虚拟货币。原告声称被告利用系统漏洞非法获取了账户权限。被告则辩称自己是白帽黑客，只是发现了安全漏洞并报告给了交易所。案件的关键在于被告是否有恶意窃取的意图。",
+  "defendant": "林浩宇",
+  "plaintiff": "澪地交易所",
+  "location": "澪地审判庭·第一法庭",
+  "time": "2026年7月15日",
+  "difficulty": 2,
+  "required_evidence": ["ev_001", "ev_002", "ev_003"],
+  "key_laws": ["law_001", "law_002"],
+  "witnesses": ["张经理", "李技术员", "王警官"],
+  "verdict_guilt": null,
+  "verdict_reason": null,
+  "status": "investigation"
+}

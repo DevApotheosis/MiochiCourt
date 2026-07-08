@@ -1,0 +1,47 @@
+site_name: 澪地审判庭 - 开发文档
+site_description: 白帽黑客法庭之战游戏的开发文档
+site_author: 开发团队
+site_url: https://example.com/docs
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - 简介: index.md
+  - 核心模块:
+      - 角色系统: core/character.md
+      - 存档系统: core/save_system.md
+      - 成就系统: core/achievements.md
+  - 游戏机制:
+      - 审判流程: mechanics/trial_flow.md
+      - 双结局判定: mechanics/verdict_system.md
+      - 等级系统: mechanics/rank_system.md
+  - 模组开发:
+      - 模块开发: modding/module_development.md
+  - 开发规范:
+      - 图片资源: standards/image_resources.md
+
+markdown_extensions:
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.toc:
+      permalink: true
+  - markdown.extensions.meta
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed
+
+extra:
+  version:
+    provider: mike

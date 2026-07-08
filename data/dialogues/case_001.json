@@ -1,0 +1,94 @@
+[
+  {
+    "dialogue_id": "dia_001",
+    "speaker": "张经理",
+    "text": "我们交易所的系统确实存在安全漏洞，但这不能成为被告非法入侵的理由。他未经授权访问了我们的核心系统，这是明确的犯罪行为。",
+    "choices": [
+      {
+        "text": "你如何确定被告有恶意？",
+        "next_dialogue": "dia_002",
+        "effect": {"trust": -5}
+      },
+      {
+        "text": "被告是否在入侵后报告了漏洞？",
+        "next_dialogue": "dia_003",
+        "effect": {"trust": 5}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_002",
+    "speaker": "张经理",
+    "text": "从访问日志来看，被告不仅进入了系统，还进行了多次数据查询操作。这种行为显然超出了'安全测试'的范围。",
+    "choices": [],
+    "next_dialogue": "dia_004",
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_003",
+    "speaker": "张经理",
+    "text": "是的，他确实发送了漏洞报告，但那是在他已经访问了系统之后。而且报告的时间已经超过了48小时的规定时限。",
+    "choices": [],
+    "next_dialogue": "dia_004",
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_004",
+    "speaker": "张经理",
+    "text": "无论如何，被告的行为已经造成了公司的重大损失和声誉影响。我们要求法庭依法严惩。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_005",
+    "speaker": "李技术员",
+    "text": "作为交易所的技术人员，我可以确认系统确实存在一个SQL注入漏洞。这个漏洞存在了至少三个月，但一直没有被发现。",
+    "choices": [
+      {
+        "text": "这个漏洞是否容易被利用？",
+        "next_dialogue": "dia_006",
+        "effect": {}
+      },
+      {
+        "text": "公司是否有定期安全审计？",
+        "next_dialogue": "dia_007",
+        "effect": {}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_006",
+    "speaker": "李技术员",
+    "text": "是的，这个漏洞相当容易被利用。一个有经验的黑客可以在几分钟内获取系统的全部权限。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_007",
+    "speaker": "李技术员",
+    "text": "理论上有，但实际上已经半年没有进行过全面的安全审计了。管理层一直以成本为由推迟。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  }
+]

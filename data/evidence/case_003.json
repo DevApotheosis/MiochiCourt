@@ -1,0 +1,188 @@
+[
+  {
+    "evidence_id": "ev_011",
+    "name": "源代码对比报告",
+    "evidence_type": "document",
+    "description": "第三方司法鉴定机构出具的源代码相似性对比报告",
+    "location": "司法鉴定中心",
+    "is_key": true,
+    "details": {
+      "format": "PDF",
+      "comparison_method": "代码比对分析",
+      "total_files": 424,
+      "high_similarity": 165,
+      "medium_similarity": 17,
+      "substantial_similarity": 239,
+      "analysis_tool": "CodeCompare Pro",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_012",
+    "name": "GitHub版本历史",
+    "evidence_type": "document",
+    "description": "StarVM项目在GitHub上的完整版本提交历史和授权协议变更记录",
+    "location": "GitHub平台",
+    "is_key": true,
+    "details": {
+      "format": "JSON",
+      "repository": "github.com/startech/starvm",
+      "commits": 312,
+      "contributors": 32,
+      "license_changes": [
+        {
+          "date": "2016-07-08",
+          "license": "LGPL 3.0"
+        },
+        {
+          "date": "2016-09-10",
+          "license": "GPL 3.0"
+        },
+        {
+          "date": "2017-10-29",
+          "license": "商业授权"
+        }
+      ],
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_013",
+    "name": "商业授权协议",
+    "evidence_type": "document",
+    "description": "原告与其他企业签署的商业授权协议样本",
+    "location": "原告法务部",
+    "is_key": true,
+    "details": {
+      "format": "PDF",
+      "parties": [
+        "星际科技",
+        "合作企业A"
+      ],
+      "amount": "50万元/年",
+      "scope": "商业使用授权",
+      "signature_date": "2026-01-15",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_014",
+    "name": "侵权软件安装包",
+    "evidence_type": "physical",
+    "description": "从应用商店下载的'云分身'App安装包",
+    "location": "取证服务器",
+    "is_key": false,
+    "details": {
+      "type": "APK文件",
+      "version": "v2.1.0",
+      "size": "28.5MB",
+      "download_source": "华为应用市场",
+      "download_count": 1360000,
+      "md5_hash": "a1b2c3d4e5f6...",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\physical.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_015",
+    "name": "会员收费记录",
+    "evidence_type": "document",
+    "description": "被告通过微信和支付宝收取会员费用的交易记录",
+    "location": "支付平台",
+    "is_key": false,
+    "details": {
+      "format": "CSV",
+      "period": "2025-01至2026-08",
+      "total_transactions": 47823,
+      "total_revenue": "5,234,180元",
+      "monthly_price": "36.8元",
+      "six_month_price": "78.8元",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_016",
+    "name": "用户评论数据",
+    "evidence_type": "document",
+    "description": "应用商店中侵权软件的用户评论和评分数据",
+    "location": "应用商店API",
+    "is_key": false,
+    "details": {
+      "format": "JSON",
+      "total_comments": 12458,
+      "average_rating": "4.2/5",
+      "positive_rate": "78%",
+      "keywords": [
+        "多开",
+        "分身",
+        "好用",
+        "流畅"
+      ],
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_017",
+    "name": "网络流量日志",
+    "evidence_type": "document",
+    "description": "侵权软件服务器的网络访问日志",
+    "location": "被告服务器",
+    "is_key": false,
+    "details": {
+      "format": "TXT",
+      "log_period": "2026-07-01至2026-07-31",
+      "total_requests": "2,847,392",
+      "peak_hour": "20:00-21:00",
+      "top_endpoints": [
+        "/api/license",
+        "/api/update",
+        "/api/track"
+      ],
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_018",
+    "name": "开发者聊天记录",
+    "evidence_type": "document",
+    "description": "被告开发团队内部的聊天记录，涉及代码获取和修改",
+    "location": "被告办公系统",
+    "is_key": false,
+    "details": {
+      "format": "JSON",
+      "platform": "企业微信",
+      "date_range": "2025-03至2025-12",
+      "participants": 8,
+      "keywords_found": [
+        "StarVM",
+        "代码",
+        "修改",
+        "开源"
+      ],
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  }
+]

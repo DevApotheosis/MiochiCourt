@@ -1,0 +1,87 @@
+[
+  {
+    "evidence_id": "ev_006",
+    "name": "数据库访问日志",
+    "evidence_type": "document",
+    "description": "澪地科技公司数据库在关键时段的访问日志。",
+    "location": "公司IT部门",
+    "is_key": true,
+    "details": {
+      "size": "2GB",
+      "format": "JSON",
+      "period": "2026-08-10至2026-08-20",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_007",
+    "name": "算法代码副本",
+    "evidence_type": "document",
+    "description": "被告电脑中发现的疑似商业机密算法代码。",
+    "location": "被告住所",
+    "is_key": true,
+    "details": {
+      "language": "Python",
+      "lines": "约5000行",
+      "encryption": "未加密",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_008",
+    "name": "数据分析报告",
+    "evidence_type": "document",
+    "description": "被告发布的数据分析研究报告。",
+    "location": "学术论坛",
+    "is_key": false,
+    "details": {
+      "publish_date": "2026-08-18",
+      "platform": "arxiv.org",
+      "citations": "12",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_009",
+    "name": "网络入侵检测日志",
+    "evidence_type": "document",
+    "description": "公司防火墙和入侵检测系统的告警日志。",
+    "location": "公司安全部门",
+    "is_key": false,
+    "details": {
+      "alert_count": "47",
+      "severity": "高",
+      "time_range": "2026-08-15 02:00-04:00",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_010",
+    "name": "证人证词录音",
+    "evidence_type": "audio",
+    "description": "公司员工的证词录音。",
+    "location": "警方取证室",
+    "is_key": false,
+    "details": {
+      "duration": "30分钟",
+      "format": "WAV",
+      "witness": "赵工程师",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\audio.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  }
+]

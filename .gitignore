@@ -1,0 +1,6 @@
+data/player_config.json
+data/achievements/玩家_achievements.json
+data/achievements/烟澪_achievements.json
+*.pyc
+*__pycache__/
+*saves/

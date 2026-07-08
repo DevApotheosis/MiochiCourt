@@ -1,0 +1,232 @@
+[
+  {
+    "dialogue_id": "dia_010",
+    "speaker": "周技术员",
+    "text": "我是原告公司的技术负责人。StarVM是我们公司花费三年时间开发的核心技术，我们在GitHub上开源是为了促进技术交流，并非允许商业使用。被告的行为严重侵犯了我们的知识产权。",
+    "choices": [
+      {
+        "text": "能否介绍一下StarVM的技术特点？",
+        "next_dialogue": "dia_011",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "开源协议变更的具体时间点是什么？",
+        "next_dialogue": "dia_012",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "你们是否与被告进行过沟通？",
+        "next_dialogue": "dia_013",
+        "effect": {"trust": -5}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_011",
+    "speaker": "周技术员",
+    "text": "StarVM是一款先进的虚拟化引擎，采用插件化架构设计，支持无感知热更新、App多开、云加载等高级功能。它的核心价值在于沙盒隔离技术，能够在不Root的情况下实现应用虚拟化。",
+    "choices": [
+      {
+        "text": "这些功能在侵权软件中是否存在？",
+        "next_dialogue": "dia_014",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "技术实现上有哪些创新点？",
+        "next_dialogue": "dia_015",
+        "effect": {"trust": 3}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_012",
+    "speaker": "周技术员",
+    "text": "项目最初采用LGPL 3.0协议，2016年9月改为GPL 3.0，2017年10月我们正式将其变更为商业授权模式。GitHub上的版本历史可以清楚地证明这一点。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_013",
+    "speaker": "周技术员",
+    "text": "我们多次尝试联系被告，但他们一直回避。直到我们提起诉讼后，他们才下架了相关软件。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_014",
+    "speaker": "周技术员",
+    "text": "是的，经过对比分析，被告的'云分身'App几乎完全复制了我们的核心功能。从代码结构到API接口，都存在高度相似性。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": ["ev_011"],
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_015",
+    "speaker": "周技术员",
+    "text": "主要创新点包括：1) 基于Binder机制的跨进程通信方案；2) 动态加载DEX文件的技术；3) 虚拟环境与宿主环境的隔离策略。这些都是我们的核心技术秘密。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_020",
+    "speaker": "吴工程师",
+    "text": "我是被告公司的首席技术官。我们的'云分身'App是基于开源项目StarXposed开发的，而StarXposed遵循GPL协议，我们完全有权进行商业使用。",
+    "choices": [
+      {
+        "text": "StarXposed与StarVM是什么关系？",
+        "next_dialogue": "dia_021",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "你们是否修改了源代码？",
+        "next_dialogue": "dia_022",
+        "effect": {"trust": 3}
+      },
+      {
+        "text": "为什么不直接联系原作者获取授权？",
+        "next_dialogue": "dia_023",
+        "effect": {"trust": -5}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_021",
+    "speaker": "吴工程师",
+    "text": "StarXposed是基于StarVM和EPIC项目开发的开源项目，由独立开发者维护。它遵循GPL 3.0协议发布，任何人都可以自由使用和修改。",
+    "choices": [
+      {
+        "text": "GPL协议允许商业使用吗？",
+        "next_dialogue": "dia_024",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "你们是否了解协议变更的情况？",
+        "next_dialogue": "dia_025",
+        "effect": {"trust": -3}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_022",
+    "speaker": "吴工程师",
+    "text": "当然，我们投入了大量人力进行二次开发。我们添加了视频美颜、多账号管理等创新功能，这些都是StarXposed原本没有的。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_023",
+    "speaker": "吴工程师",
+    "text": "我们认为基于GPL协议的开源软件无需单独授权。而且当我们开发时，StarVM已经是开源项目，我们没有理由去联系一个已经开源的项目作者。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_024",
+    "speaker": "吴工程师",
+    "text": "根据GPL 3.0协议第4条，协议明确允许商业用途。只要我们遵循协议条款，就有权进行商业开发和销售。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": ["ev_012"],
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_025",
+    "speaker": "吴工程师",
+    "text": "我们只关注StarXposed项目，它一直遵循GPL协议。至于StarVM后来的协议变更，我们并不知情，也与我们无关。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_030",
+    "speaker": "郑律师",
+    "text": "我是原告的代理律师。本案的核心在于被告是否合法获得了软件的商业使用权。根据证据，被告使用的代码与原告享有著作权的代码存在实质相似，且未经授权。",
+    "choices": [
+      {
+        "text": "如何证明代码相似性？",
+        "next_dialogue": "dia_031",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "开源协议的法律意义是什么？",
+        "next_dialogue": "dia_032",
+        "effect": {"trust": 5}
+      },
+      {
+        "text": "赔偿金额是如何计算的？",
+        "next_dialogue": "dia_033",
+        "effect": {"trust": 3}
+      }
+    ],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": null,
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_031",
+    "speaker": "郑律师",
+    "text": "我们委托了第三方司法鉴定机构进行代码比对。结果显示，424个可比文件中，239个具有实质相似性，165个具有高度相似性。这足以证明被告复制了原告的代码。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": ["ev_011"],
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_032",
+    "speaker": "郑律师",
+    "text": "开源协议是著作权人对软件使用范围的授权。即使软件曾经开源，著作权人仍然有权变更授权条件。被告使用的是变更后的版本，应当遵守新的授权要求。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": ["ev_012"],
+    "effect": {}
+  },
+  {
+    "dialogue_id": "dia_033",
+    "speaker": "郑律师",
+    "text": "赔偿金额基于被告的侵权获利。根据支付记录，被告通过会员收费获得了超过500万元的收入。此外，我们还主张被告承担我们为维权支付的律师费、鉴定费等合理费用。",
+    "choices": [],
+    "next_dialogue": null,
+    "trigger_evidence": null,
+    "required_evidence": ["ev_015"],
+    "effect": {}
+  }
+]

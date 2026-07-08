@@ -1,0 +1,87 @@
+[
+  {
+    "evidence_id": "ev_001",
+    "name": "服务器访问日志",
+    "evidence_type": "document",
+    "description": "澪地交易所服务器在案发时段的访问日志，记录了所有登录和操作记录。",
+    "location": "交易所IT部门",
+    "is_key": true,
+    "details": {
+      "size": "500MB",
+      "format": "CSV",
+      "timestamp": "2026-07-15 00:00:00",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_002",
+    "name": "漏洞报告邮件",
+    "evidence_type": "document",
+    "description": "被告发送给交易所安全团队的漏洞报告邮件，包含详细的漏洞描述和复现步骤。",
+    "location": "被告邮箱",
+    "is_key": true,
+    "details": {
+      "sender": "linhaoyu@example.com",
+      "recipient": "security@lingdi-exchange.com",
+      "sent_time": "2026-07-14 18:30:00",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_003",
+    "name": "交易记录",
+    "evidence_type": "document",
+    "description": "案发时段的虚拟货币交易记录，显示了资金流向。",
+    "location": "交易所财务部门",
+    "is_key": true,
+    "details": {
+      "amount": "5000000",
+      "currency": "澪币",
+      "transaction_type": "转账",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_004",
+    "name": "监控录像",
+    "evidence_type": "video",
+    "description": "交易所机房在案发时段的监控录像。",
+    "location": "交易所监控室",
+    "is_key": false,
+    "details": {
+      "duration": "24小时",
+      "quality": "高清",
+      "camera_id": "CAM-001",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\video.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  },
+  {
+    "evidence_id": "ev_005",
+    "name": "网络流量分析报告",
+    "evidence_type": "document",
+    "description": "第三方安全机构出具的网络流量分析报告，显示了异常访问模式。",
+    "location": "网络安全实验室",
+    "is_key": false,
+    "details": {
+      "analyst": "王博士",
+      "report_date": "2026-07-16",
+      "methodology": "深度包检测",
+      "image_path": "d:/Pro/ai-tools/games/city_qes/resources/images\\document.png"
+    },
+    "collected": false,
+    "analyzed": false,
+    "analysis_result": null
+  }
+]

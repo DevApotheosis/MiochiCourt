@@ -1,0 +1,35 @@
+{
+  "dossier_id": "dossier_case_copyright_001_20260708_135651",
+  "player_name": "烟澪",
+  "case_id": "case_copyright_001",
+  "case_title": "侵害计算机软件著作权纠纷案",
+  "verdict": "innocent",
+  "verdict_reason": "证人证言与物证相互印证，形成完整的证据体系。",
+  "evidence_chain": [
+    {
+      "evidence_id": "ev_copyright_001",
+      "name": "证据保全记录",
+      "analyzed": true
+    },
+    {
+      "evidence_id": "ev_copyright_002",
+      "name": "软件版权信息截图",
+      "analyzed": true
+    },
+    {
+      "evidence_id": "ev_copyright_003",
+      "name": "被告检讨书",
+      "analyzed": true
+    }
+  ],
+  "witness_statements": {},
+  "trial_scores": {
+    "evidence_points": 45,
+    "law_points": 15,
+    "witness_points": 0,
+    "total": 60
+  },
+  "judge_mood": 85,
+  "created_at": "2026-07-08T13:56:51.852443",
+  "checksum": "88c1ca4a495510f8fbdc5b94cde65152"
+}

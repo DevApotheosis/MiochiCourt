@@ -1,0 +1,26 @@
+{
+  "case_id": "case_003",
+  "title": "开源软件商业侵权案",
+  "description": "原告星际科技公司开发了一款名为StarVM的虚拟化引擎软件，在GitHub上以GPL协议开源发布。被告云创网络公司开发的'云分身'App被指控未经授权使用了StarVM的核心代码，并通过会员订阅模式获利超过500万元。被告辩称其使用的代码来自遵循GPL协议的开源项目StarXposed，有权进行商业使用。本案核心争议在于开源协议的适用范围和商业授权的合法性。",
+  "defendant": "云创网络科技有限公司",
+  "plaintiff": "星际科技有限公司",
+  "location": "澪地知识产权法庭",
+  "time": "2026年9月20日",
+  "difficulty": 4,
+  "required_evidence": ["ev_011", "ev_012", "ev_013"],
+  "key_laws": ["law_007", "law_008", "law_009"],
+  "witnesses": ["周技术员", "吴工程师", "郑律师"],
+  "verdict_guilt": null,
+  "verdict_reason": null,
+  "status": "investigation",
+  "background": "参考真实案件：开源软件著作权侵权纠纷，涉及GPL/LGPL协议适用、代码相似性鉴定、商业授权争议等法律问题",
+  "parties": {
+    "plaintiff": {
+      "claims": ["侵犯复制权", "侵犯发行权", "侵犯信息网络传播权"],
+      "demand": "立即停止侵权、赔偿经济损失500万元、承担维权费用"
+    },
+    "defendant": {
+      "defenses": ["合法开源授权", "代码来源于第三方开源项目", "自主开发创新功能"]
+    }
+  }
+}
