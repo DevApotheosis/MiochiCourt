@@ -1,0 +1,1898 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="白帽黑客法庭之战游戏的开发文档">
+      
+      
+        <meta name="author" content="开发团队">
+      
+      
+        <link rel="canonical" href="https://example.com/docs/modding/module_development/">
+      
+      
+        <link rel="prev" href="../../mechanics/rank_system/">
+      
+      
+        <link rel="next" href="../../standards/image_resources/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>模块开发 - 澪地审判庭 - 开发文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="澪地审判庭 - 开发文档" class="md-header__button md-logo" aria-label="澪地审判庭 - 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            澪地审判庭 - 开发文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模块开发
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  简介
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../core/character/" class="md-tabs__link">
+          
+  
+  
+  核心模块
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mechanics/trial_flow/" class="md-tabs__link">
+          
+  
+  
+  游戏机制
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  模组开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../standards/image_resources/" class="md-tabs__link">
+          
+  
+  
+  开发规范
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="澪地审判庭 - 开发文档" class="md-nav__button md-logo" aria-label="澪地审判庭 - 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    澪地审判庭 - 开发文档
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心模块
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/character/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    角色系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/save_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存档系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/achievements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    成就系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    游戏机制
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    游戏机制
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanics/trial_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    审判流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanics/verdict_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    双结局判定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanics/rank_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    等级系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模组开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模组开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块开发
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概述
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件结构规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文件结构规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模组目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命名约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模组配置文件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模组配置文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulejson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module.json 格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置字段说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可扩展API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可扩展API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Case API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建案件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        案件数据格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建证据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证据类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#law-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Law API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Law API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建法律条文
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dialogue-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dialogue API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dialogue API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建对话
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发工作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 创建模组项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 编写配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 开发内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 测试模组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 打包发布
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 发布渠道
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模组开发示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模组开发示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例1：新增案件模组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例2：新增法律模组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例3：新增证据类型模组
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: 模组安装后不显示怎么办？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: 如何调试模组？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: 模组可以包含Python代码吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件路径
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发规范
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发规范
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/image_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图片资源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">模组开发指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>本指南详细介绍如何为《澪地审判庭》开发自定义模组。模组系统允许开发者扩展游戏内容，包括新增案件、法律条文、证据类型和对话内容。</p>
+<h2 id="_3">文件结构规范<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">模组目录结构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>my_module/                    # 模组根目录（目录名即为module_id）
+├── module.json               # 模组配置文件（必填）
+├── cases/                    # 案件数据目录
+│   └── case_xxx.json         # 案件定义文件
+├── evidence/                 # 证据数据目录
+│   └── case_xxx.json         # 证据定义文件（与案件ID对应）
+├── laws/                     # 法律数据目录
+│   └── category_laws.json    # 法律定义文件
+├── dialogues/                # 对话数据目录
+│   └── case_xxx.json         # 对话定义文件（与案件ID对应）
+├── images/                   # 图片资源目录（可选）
+│   ├── evidence/             # 证据图片
+│   └── witness/              # 证人图片
+└── README.md                 # 模组说明文档（推荐）
+</code></pre></div>
+<h3 id="_5">命名约定<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>文件/目录</th>
+<th>命名规则</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模组目录</td>
+<td>小写字母+下划线</td>
+<td><code>cyber_crime_case</code></td>
+</tr>
+<tr>
+<td>案件文件</td>
+<td><code>case_{ID}.json</code></td>
+<td><code>case_001.json</code></td>
+</tr>
+<tr>
+<td>证据文件</td>
+<td><code>{案件ID}.json</code></td>
+<td><code>case_001.json</code></td>
+</tr>
+<tr>
+<td>法律文件</td>
+<td><code>{类别}_laws.json</code></td>
+<td><code>cyber_laws.json</code></td>
+</tr>
+<tr>
+<td>对话文件</td>
+<td><code>{案件ID}.json</code></td>
+<td><code>case_001.json</code></td>
+</tr>
+<tr>
+<td>图片文件</td>
+<td><code>evidence_{ID}.png</code></td>
+<td><code>evidence_ev_001.png</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">模组配置文件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="modulejson">module.json 格式<a class="headerlink" href="#modulejson" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cyber_crime_case&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;网络犯罪案件包&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;开发者名称&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;包含3个网络犯罪相关案件和10条相关法律&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_002&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_003&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;laws&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cyber_laws&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;evidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_002&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_003&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dialogues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_002&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;case_003&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;compatible_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_7">配置字段说明<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>module_id</td>
+<td>string</td>
+<td>是</td>
+<td>模组唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>是</td>
+<td>模组显示名称</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>是</td>
+<td>版本号（语义化版本）</td>
+</tr>
+<tr>
+<td>author</td>
+<td>string</td>
+<td>是</td>
+<td>作者名称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>是</td>
+<td>模组描述</td>
+</tr>
+<tr>
+<td>cases</td>
+<td>array</td>
+<td>否</td>
+<td>包含的案件ID列表</td>
+</tr>
+<tr>
+<td>laws</td>
+<td>array</td>
+<td>否</td>
+<td>包含的法律文件列表</td>
+</tr>
+<tr>
+<td>evidence</td>
+<td>array</td>
+<td>否</td>
+<td>包含的证据文件列表</td>
+</tr>
+<tr>
+<td>dialogues</td>
+<td>array</td>
+<td>否</td>
+<td>包含的对话文件列表</td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>array</td>
+<td>否</td>
+<td>依赖的其他模组ID</td>
+</tr>
+<tr>
+<td>compatible_version</td>
+<td>string</td>
+<td>否</td>
+<td>兼容的游戏版本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="api">可扩展API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<h3 id="case-api">Case API<a class="headerlink" href="#case-api" title="Permanent link">&para;</a></h3>
+<h4 id="_8">创建案件<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.case_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">Case</span>
+
+<span class="n">case</span> <span class="o">=</span> <span class="n">Case</span><span class="p">(</span>
+    <span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;case_001&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;黑客入侵案&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;被告被指控非法入侵公司服务器...&#39;</span><span class="p">,</span>
+    <span class="n">defendant</span><span class="o">=</span><span class="s1">&#39;张三&#39;</span><span class="p">,</span>
+    <span class="n">plaintiff</span><span class="o">=</span><span class="s1">&#39;科技公司&#39;</span><span class="p">,</span>
+    <span class="n">location</span><span class="o">=</span><span class="s1">&#39;北京市海淀区&#39;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s1">&#39;2026-07-15&#39;</span><span class="p">,</span>
+    <span class="n">difficulty</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">required_evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ev_001&#39;</span><span class="p">,</span> <span class="s1">&#39;ev_002&#39;</span><span class="p">],</span>
+    <span class="n">key_laws</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;law_001&#39;</span><span class="p">],</span>
+    <span class="n">witnesses</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span> <span class="s1">&#39;王五&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="_9">案件数据格式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;case_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;case_001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;黑客入侵案&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;被告被指控非法入侵公司服务器...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;defendant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;张三&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;plaintiff&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;科技公司&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;北京市海淀区&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-15&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;difficulty&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;required_evidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ev_001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ev_002&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;key_laws&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;law_001&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;witnesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;李四&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;王五&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;background&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;案件背景故事...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;defendant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;张三&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;被告&quot;</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;plaintiff&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;科技公司&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;原告&quot;</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;网络犯罪&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;刑事案件&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="evidence-api">Evidence API<a class="headerlink" href="#evidence-api" title="Permanent link">&para;</a></h3>
+<h4 id="_10">创建证据<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.evidence</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evidence</span>
+
+<span class="n">evidence</span> <span class="o">=</span> <span class="n">Evidence</span><span class="p">(</span>
+    <span class="n">evidence_id</span><span class="o">=</span><span class="s1">&#39;ev_001&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;服务器日志&#39;</span><span class="p">,</span>
+    <span class="n">evidence_type</span><span class="o">=</span><span class="s1">&#39;document&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;包含入侵记录的服务器日志&#39;</span><span class="p">,</span>
+    <span class="n">location</span><span class="o">=</span><span class="s1">&#39;公司服务器机房&#39;</span><span class="p">,</span>
+    <span class="n">is_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;JSON&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="s1">&#39;10MB&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="_11">证据类型<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document</td>
+<td>文档证据</td>
+<td>包含文本、数据表格</td>
+</tr>
+<tr>
+<td>video</td>
+<td>视频证据</td>
+<td>包含监控录像</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>音频证据</td>
+<td>包含录音、语音</td>
+</tr>
+<tr>
+<td>physical</td>
+<td>物证</td>
+<td>实物证据</td>
+</tr>
+<tr>
+<td>testimony</td>
+<td>证言</td>
+<td>证人陈述</td>
+</tr>
+<tr>
+<td>digital</td>
+<td>数字证据</td>
+<td>新增类型，区块链/加密数据</td>
+</tr>
+<tr>
+<td>network</td>
+<td>网络证据</td>
+<td>新增类型，网络流量分析</td>
+</tr>
+<tr>
+<td>forensic</td>
+<td>取证证据</td>
+<td>新增类型，司法鉴定报告</td>
+</tr>
+<tr>
+<td>financial</td>
+<td>财务证据</td>
+<td>新增类型，资金流水</td>
+</tr>
+<tr>
+<td>expert</td>
+<td>专家证言</td>
+<td>新增类型，专家意见</td>
+</tr>
+</tbody>
+</table>
+<h3 id="law-api">Law API<a class="headerlink" href="#law-api" title="Permanent link">&para;</a></h3>
+<h4 id="_12">创建法律条文<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.law_system</span><span class="w"> </span><span class="kn">import</span> <span class="n">Law</span>
+
+<span class="n">law</span> <span class="o">=</span> <span class="n">Law</span><span class="p">(</span>
+    <span class="n">law_id</span><span class="o">=</span><span class="s1">&#39;law_001&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;刑法第285条&#39;</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;刑事&#39;</span><span class="p">,</span>
+    <span class="n">severity</span><span class="o">=</span><span class="s1">&#39;严重&#39;</span><span class="p">,</span>
+    <span class="n">content</span><span class="o">=</span><span class="s1">&#39;违反国家规定，侵入国家事务、国防建设、尖端科学技术领域的计算机信息系统的，处三年以下有期徒刑或者拘役...&#39;</span><span class="p">,</span>
+    <span class="n">related_articles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;第286条&#39;</span><span class="p">,</span> <span class="s1">&#39;第287条&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="dialogue-api">Dialogue API<a class="headerlink" href="#dialogue-api" title="Permanent link">&para;</a></h3>
+<h4 id="_13">创建对话<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.dialogue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dialogue</span>
+
+<span class="n">dialogue</span> <span class="o">=</span> <span class="n">Dialogue</span><span class="p">(</span>
+    <span class="n">dialogue_id</span><span class="o">=</span><span class="s1">&#39;dia_001&#39;</span><span class="p">,</span>
+    <span class="n">speaker</span><span class="o">=</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s1">&#39;我那天晚上确实看到有人在服务器机房附近...&#39;</span><span class="p">,</span>
+    <span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;case_001&#39;</span><span class="p">,</span>
+    <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;你能描述那个人的特征吗？&#39;</span><span class="p">,</span> <span class="s1">&#39;next_dialogue&#39;</span><span class="p">:</span> <span class="s1">&#39;dia_002&#39;</span><span class="p">,</span> <span class="s1">&#39;effect&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;trust&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;你确定是那天晚上吗？&#39;</span><span class="p">,</span> <span class="s1">&#39;next_dialogue&#39;</span><span class="p">:</span> <span class="s1">&#39;dia_003&#39;</span><span class="p">,</span> <span class="s1">&#39;effect&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;trust&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">}}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="_14">开发工作流程<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 创建模组项目<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>my_module
+<span class="nb">cd</span><span class="w"> </span>my_module
+mkdir<span class="w"> </span>cases<span class="w"> </span>evidence<span class="w"> </span>laws<span class="w"> </span>dialogues<span class="w"> </span>images
+touch<span class="w"> </span>module.json
+</code></pre></div>
+<h3 id="2">2. 编写配置文件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>编辑 <code>module.json</code>，填写模组基本信息。</p>
+<h3 id="3">3. 开发内容<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>按照需求开发案件、证据、法律和对话数据。</p>
+<h3 id="4">4. 测试模组<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.module_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleManager</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">ModuleManager</span><span class="p">()</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">install_module</span><span class="p">(</span><span class="s1">&#39;/path/to/my_module&#39;</span><span class="p">)</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">load_modules</span><span class="p">()</span>
+
+<span class="c1"># 检查模组是否安装成功</span>
+<span class="n">modules</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">get_all_modules</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;已安装模组: </span><span class="si">{</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">modules</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="5">5. 打包发布<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>将模组目录打包为 ZIP 文件：</p>
+<div class="highlight"><pre><span></span><code>zip<span class="w"> </span>-r<span class="w"> </span>my_module.zip<span class="w"> </span>my_module/
+</code></pre></div>
+<h3 id="6">6. 发布渠道<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>游戏内置模组商店</li>
+<li>第三方模组平台</li>
+<li>GitHub/Gitee 仓库</li>
+</ul>
+<h2 id="_15">模组开发示例<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">示例1：新增案件模组<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p><strong>module.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;financial_fraud_case&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融诈骗案件&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LegalDev&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;包含1个金融诈骗案件&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_fin_001&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;evidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_fin_001&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;dialogues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_fin_001&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>cases/case_fin_001.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;case_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;case_fin_001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;理财产品诈骗案&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;被告利用虚假理财产品骗取投资者资金...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;defendant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;赵六&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;plaintiff&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;投资者协会&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;上海市浦东新区&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-20&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;difficulty&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;required_evidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ev_fin_001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ev_fin_002&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;witnesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;钱七&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;孙八&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="2_1">示例2：新增法律模组<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p><strong>module.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;financial_laws&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融法律包&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LegalDev&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;包含金融相关法律条文&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;laws&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;financial_laws&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>laws/financial_laws.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;law_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;law_fin_001&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;刑法第192条&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;刑事&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;严重&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;以非法占有为目的，使用诈骗方法非法集资，数额较大的，处五年以下有期徒刑或者拘役...&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;related_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;第193条&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;第266条&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="3_1">示例3：新增证据类型模组<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p><strong>module.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;module_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;digital_evidence_pack&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;数字证据包&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TechDev&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;新增区块链和加密货币相关证据&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;evidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;case_crypto_001&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>evidence/case_crypto_001.json</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;evidence_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ev_crypto_001&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;区块链交易记录&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;evidence_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;digital&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;包含被告钱包地址的区块链交易流水&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;区块链网络&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CSV&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;blockchain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ethereum&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;wallet_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x7f3a...&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;evidence_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ev_crypto_002&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;智能合约代码&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;evidence_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;digital&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;可疑的智能合约源代码&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;区块链网络&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Solidity&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;contract_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x9e2b...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;verified&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="_16">最佳实践<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="_17">性能优化<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>数据懒加载</strong>: 只在需要时加载案件数据</li>
+<li><strong>图片压缩</strong>: 使用合适的图片格式和尺寸</li>
+<li><strong>缓存机制</strong>: 缓存已加载的模组数据</li>
+</ol>
+<h3 id="_18">兼容性<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>版本检查</strong>: 在模组中声明兼容的游戏版本</li>
+<li><strong>向后兼容</strong>: 确保旧版本存档能正常加载</li>
+<li><strong>错误处理</strong>: 添加完善的错误处理和回退机制</li>
+</ol>
+<h3 id="_19">安全性<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>数据验证</strong>: 验证所有用户输入数据</li>
+<li><strong>路径安全</strong>: 避免路径遍历攻击</li>
+<li><strong>代码审查</strong>: 定期审查模组代码</li>
+</ol>
+<h2 id="_20">常见问题<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h3 id="q">Q: 模组安装后不显示怎么办？<a class="headerlink" href="#q" title="Permanent link">&para;</a></h3>
+<p><strong>A:</strong> 检查以下事项：
+1. 模组目录名是否符合命名规范
+2. <code>module.json</code> 是否存在且格式正确
+3. 所有引用的文件是否存在</p>
+<h3 id="q_1">Q: 如何调试模组？<a class="headerlink" href="#q_1" title="Permanent link">&para;</a></h3>
+<p><strong>A:</strong> 在模组代码中添加日志输出：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;模组加载成功&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="q-python">Q: 模组可以包含Python代码吗？<a class="headerlink" href="#q-python" title="Permanent link">&para;</a></h3>
+<p><strong>A:</strong> 当前版本的模组系统只支持JSON数据文件。如需自定义逻辑，需要修改游戏源代码。</p>
+<h2 id="_21">文件路径<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<ul>
+<li>模组系统核心: <code>src/core/module_manager.py</code></li>
+<li>模组管理界面: <code>src/gui/module_manager_gui.py</code></li>
+<li>模组存储目录: <code>data/modules/</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
