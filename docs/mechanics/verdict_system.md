@@ -44,8 +44,8 @@
 
 | 判决结果 | 结局类型 | 说明 |
 |----------|----------|------|
-| 胜诉 | prosecution_success | 诉讼成功，原告胜诉 |
-| 败诉 | prosecution_failure | 诉讼失败，原告败诉 |
+| 被告有罪 | prosecution_success | 诉讼成功，原告胜诉，被告被判定有罪 |
+| 被告无罪 | prosecution_failure | 诉讼失败，原告败诉，被告被判定无罪 |
 
 ## 评分计算
 
@@ -73,9 +73,7 @@ judge_mood += 5
 points = 10
 ```
 
-## 判决理由生成
-
-系统会随机选择判决理由，增加游戏的多样性：
+## 判决理由
 
 ### 成功理由
 
@@ -105,27 +103,6 @@ points = 10
 |----------|----------|----------|
 | 成功 | 50 | difficulty × 10 |
 | 失败 | 25 | difficulty × 10 |
-
-## 关键代码位置
-
-```python
-# 最终陈述判定逻辑
-def on_final_statement(self):
-    total_score = self.evidence_points + self.law_points + self.witness_points
-    key_collected = len(self.current_case.evidence_manager.get_key_evidence())
-    total_key = len(self.current_case.required_evidence)
-    
-    success_threshold = 40
-    if key_collected >= total_key // 2:
-        success_threshold = 30
-    
-    if total_score >= success_threshold and self.judge_mood >= 40:
-        verdict = 'innocent'
-        outcome_type = 'defense_success' if self.current_case.defendant else 'prosecution_success'
-    else:
-        verdict = 'major'
-        outcome_type = 'defense_failure' if self.current_case.defendant else 'prosecution_failure'
-```
 
 ## 文件路径
 

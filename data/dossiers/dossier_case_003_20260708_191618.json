@@ -1,0 +1,25 @@
+{
+  "dossier_id": "dossier_case_003_20260708_191618",
+  "player_name": "的",
+  "case_id": "case_003",
+  "case_title": "开源软件商业侵权案",
+  "verdict": "innocent",
+  "verdict_reason": "法律适用不当，未能有效辩护。",
+  "evidence_chain": [
+    {
+      "evidence_id": "ev_012",
+      "name": "GitHub版本历史",
+      "analyzed": false
+    }
+  ],
+  "witness_statements": {},
+  "trial_scores": {
+    "evidence_points": 0,
+    "law_points": 0,
+    "witness_points": 0,
+    "total": 0
+  },
+  "judge_mood": 50,
+  "created_at": "2026-07-08T19:16:18.052015",
+  "checksum": "a215c8f9e7c05be0c3c95ea2b61364ed"
+}

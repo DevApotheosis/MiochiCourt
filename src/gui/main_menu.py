@@ -158,17 +158,13 @@ class MainMenu(tk.Frame):
     
     def on_about(self):
         about_text = """
-澪地审判庭 - 白帽黑客的法庭之战
-
-玩家扮演一名天才白帽黑客，
-在最高国家权力机关有登记及实际权力。
+澪地审判庭
 
 通过收集证据（实物、文档、音频、视频、证言），
 在澪地审判庭依据相关法律法规，
 顺利完成辩护或诉讼。
 
-工具链：Python + Tkinter
-开发环境：Windows 10 22H2
+Copyright©️2026 DevApotheosis
         """
         messagebox.showinfo('关于游戏', about_text)
     

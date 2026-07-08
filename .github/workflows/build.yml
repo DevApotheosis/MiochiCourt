@@ -31,7 +31,7 @@ jobs:
 
       - name: Build executable
         run: |
-          python -m PyInstaller --name city_qes --onefile --windowed --distpath dist --workpath build --specpath spec --add-data "data;data" run.py
+          python -m PyInstaller city_qes.spec --distpath dist --workpath build --specpath spec
 
       - name: Upload to GitHub Releases
         uses: ncipollo/release-action@v1

@@ -127,6 +127,14 @@ class CaseSelection(tk.Frame):
         case_id = selected[0]
         case = self.case_manager.get_case_by_id(case_id)
         
+        if not case.is_role_allowed(self.player_role):
+            allowed_roles = case.get_allowed_roles()
+            role_labels = []
+            for role in allowed_roles:
+                role_labels.append('被告律师' if role == 'defense' else '原告律师')
+            messagebox.showwarning('权限不足', f'该案件仅允许担任：{"/".join(role_labels)}')
+            return
+        
         if case.status == 'completed':
             if not messagebox.askyesno('确认重玩', '该案件已完成，确定要重新开始吗？'):
                 return
@@ -139,6 +147,11 @@ class CaseSelection(tk.Frame):
             case.verdict_reason = None
             case.evidence_manager.reset_evidence()
         
+        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+        existing_progress = existing_save.case_progress if existing_save else {}
+        
+        existing_progress[case_id] = {'status': 'investigation', 'evidence_collected': [], 'evidence_analyzed': []}
+        
         self.save_manager.auto_save(
             player_name=self.character.name,
             current_case_id=case_id,
@@ -149,7 +162,7 @@ class CaseSelection(tk.Frame):
             dialogue_history=[],
             game_time=0,
             player_data=self.character.to_dict(),
-            case_progress={case_id: {'status': 'investigation', 'evidence_collected': [], 'evidence_analyzed': []}}
+            case_progress=existing_progress
         )
         
         from .investigation_view import InvestigationView

@@ -59,6 +59,10 @@ class InvestigationView(tk.Frame):
                 'dialogue_history': self.dialogue_history
             }
             
+            existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+            existing_progress = existing_save.case_progress if existing_save else {}
+            existing_progress[self.current_case.case_id] = case_progress
+            
             self.save_manager.auto_save(
                 player_name=self.character.name,
                 current_case_id=self.current_case.case_id,
@@ -69,7 +73,7 @@ class InvestigationView(tk.Frame):
                 dialogue_history=[],
                 game_time=0,
                 player_data=self.character.to_dict(),
-                case_progress={self.current_case.case_id: case_progress}
+                case_progress=existing_progress
             )
     
     def _setup_ui(self):
@@ -290,6 +294,14 @@ class InvestigationView(tk.Frame):
         self.character.update_stat('evidence_collected', 1)
         self.character.add_experience(10)
         
+        existing_save = self.save_manager.get_save_by_id(SaveManager.AUTO_SAVE_ID)
+        existing_progress = existing_save.case_progress if existing_save else {}
+        existing_progress[self.current_case.case_id] = {
+            'status': 'investigation', 
+            'evidence_collected': [e.evidence_id for e in self.current_case.evidence_manager.get_collected_evidence()],
+            'evidence_analyzed': [e.evidence_id for e in self.current_case.evidence_manager.get_analyzed_evidence()]
+        }
+        
         self.save_manager.auto_save(
             player_name=self.character.name,
             current_case_id=self.current_case.case_id,
@@ -300,9 +312,7 @@ class InvestigationView(tk.Frame):
             dialogue_history=[],
             game_time=0,
             player_data=self.character.to_dict(),
-            case_progress={self.current_case.case_id: {'status': 'investigation', 
-                'evidence_collected': [e.evidence_id for e in self.current_case.evidence_manager.get_collected_evidence()],
-                'evidence_analyzed': [e.evidence_id for e in self.current_case.evidence_manager.get_analyzed_evidence()]}}
+            case_progress=existing_progress
         )
         
         display_content = self._generate_evidence_display(evidence)
@@ -638,10 +648,14 @@ class InvestigationView(tk.Frame):
         self.info_text.yview_scroll(int(-1*(event.delta/120)), "units")
     
     def _setup_shortcuts(self):
-        self.bind('<Control-c>', lambda e: self.on_collect_evidence())
-        self.bind('<Control-a>', lambda e: self.on_analyze_evidence())
-        self.bind('<Control-i>', lambda e: self.on_interview_witness())
-        self.bind('<Control-l>', lambda e: self.on_search_laws())
-        self.bind('<Control-b>', lambda e: self.on_back())
-        self.bind('<Control-e>', lambda e: self.on_enter_court())
-        self.bind('<Escape>', lambda e: self.on_back())
+        from ..core.config_manager import ConfigManager
+        config_manager = ConfigManager()
+        shortcuts = config_manager.get_shortcuts()
+        
+        self.bind(shortcuts['collect_evidence'], lambda e: self.on_collect_evidence())
+        self.bind(shortcuts['analyze_evidence'], lambda e: self.on_analyze_evidence())
+        self.bind(shortcuts['interview_witness'], lambda e: self.on_interview_witness())
+        self.bind(shortcuts['search_laws'], lambda e: self.on_search_laws())
+        self.bind(shortcuts['back'], lambda e: self.on_back())
+        self.bind(shortcuts['enter_court'], lambda e: self.on_enter_court())
+        self.bind(shortcuts['escape'], lambda e: self.on_back())

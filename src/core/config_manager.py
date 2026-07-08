@@ -3,8 +3,19 @@ import os
 from .config import DATA_DIR
 
 
+DEFAULT_SHORTCUTS = {
+    'collect_evidence': '<Control-c>',
+    'analyze_evidence': '<Control-a>',
+    'interview_witness': '<Control-i>',
+    'search_laws': '<Control-l>',
+    'back': '<Control-b>',
+    'enter_court': '<Control-e>',
+    'escape': '<Escape>'
+}
+
+
 class ConfigManager:
-    CONFIG_FILE = os.path.join(DATA_DIR, 'player_config.json')
+    CONFIG_FILE = os.path.join(os.environ.get('DATA_DIR', DATA_DIR), 'player_config.json')
     
     def __init__(self):
         self.config = self._load_config()
@@ -35,6 +46,22 @@ class ConfigManager:
     def set_player_role(self, role):
         if role in ['defense', 'prosecution']:
             self.config['player_role'] = role
+            self._save_config()
+    
+    def get_shortcuts(self):
+        shortcuts = DEFAULT_SHORTCUTS.copy()
+        shortcuts.update(self.config.get('shortcuts', {}))
+        return shortcuts
+    
+    def set_shortcut(self, action, key):
+        if 'shortcuts' not in self.config:
+            self.config['shortcuts'] = {}
+        self.config['shortcuts'][action] = key
+        self._save_config()
+    
+    def reset_shortcuts(self):
+        if 'shortcuts' in self.config:
+            del self.config['shortcuts']
             self._save_config()
     
     def get_all_config(self):

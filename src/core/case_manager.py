@@ -6,7 +6,7 @@ from .evidence import EvidenceManager
 class Case:
     def __init__(self, case_id, title, description, defendant, plaintiff, location, time, difficulty, 
                  required_evidence=None, key_laws=None, witnesses=None, verdict_guilt=None, 
-                 verdict_reason=None, background=None, parties=None, tags=None):
+                 verdict_reason=None, background=None, parties=None, tags=None, allow_roles=None):
         self.case_id = case_id
         self.title = title
         self.description = description
@@ -24,6 +24,7 @@ class Case:
         self.background = background or ''
         self.parties = parties or {}
         self.tags = tags or []
+        self.allow_roles = allow_roles or ['defense', 'prosecution']
         self.evidence_manager = EvidenceManager()
         self.evidence_manager.load_case_evidence(case_id)
     
@@ -36,6 +37,12 @@ class Case:
     
     def get_guilt_label(self):
         return GUILT_LEVELS.get(self.verdict_guilt, self.verdict_guilt)
+    
+    def is_role_allowed(self, role):
+        return role in self.allow_roles
+    
+    def get_allowed_roles(self):
+        return self.allow_roles.copy()
     
     def to_dict(self):
         return {
@@ -55,7 +62,8 @@ class Case:
             'status': self.status,
             'background': self.background,
             'parties': self.parties,
-            'tags': self.tags
+            'tags': self.tags,
+            'allow_roles': self.allow_roles
         }
     
     @classmethod
@@ -76,7 +84,8 @@ class Case:
             data.get('verdict_reason'),
             data.get('background'),
             data.get('parties'),
-            data.get('tags')
+            data.get('tags'),
+            data.get('allow_roles')
         )
         case.status = data.get('status', 'investigation')
         return case

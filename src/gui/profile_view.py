@@ -29,14 +29,17 @@ class ProfileView(tk.Toplevel):
         profile_tab = ttk.Frame(notebook)
         saves_tab = ttk.Frame(notebook)
         dossiers_tab = ttk.Frame(notebook)
+        shortcuts_tab = ttk.Frame(notebook)
         
         notebook.add(profile_tab, text='个人信息')
         notebook.add(saves_tab, text='存档管理')
         notebook.add(dossiers_tab, text='卷宗管理')
+        notebook.add(shortcuts_tab, text='快捷键设置')
         
         self._setup_profile_tab(profile_tab)
         self._setup_saves_tab(saves_tab)
         self._setup_dossiers_tab(dossiers_tab)
+        self._setup_shortcuts_tab(shortcuts_tab)
     
     def _setup_profile_tab(self, parent):
         parent.grid_columnconfigure(0, weight=1)
@@ -276,6 +279,38 @@ class ProfileView(tk.Toplevel):
                 messagebox.showinfo('删除成功', '卷宗已删除')
             else:
                 messagebox.showwarning('警告', '删除卷宗失败')
+    
+    def _setup_shortcuts_tab(self, parent):
+        parent.grid_columnconfigure(0, weight=1)
+        
+        from .shortcuts_settings import ShortcutsSettings
+        
+        ttk.Label(parent, text='点击下方按钮打开快捷键设置界面', 
+                  font=('微软雅黑', 12)).pack(pady=20)
+        
+        ttk.Button(parent, text='打开快捷键设置', style='Large.TButton',
+                   command=lambda: ShortcutsSettings(self)).pack(pady=10)
+        
+        ttk.Separator(parent, orient=tk.HORIZONTAL).pack(fill=tk.X, pady=20)
+        
+        ttk.Label(parent, text='默认快捷键', style='Subtitle.TLabel').pack(pady=(0, 10))
+        
+        default_shortcuts = [
+            ('Ctrl+C', '收集证据'),
+            ('Ctrl+A', '分析证据'),
+            ('Ctrl+I', '询问证人'),
+            ('Ctrl+L', '搜索法律'),
+            ('Ctrl+B', '返回'),
+            ('Ctrl+E', '进入法庭'),
+            ('Esc', '取消/退出')
+        ]
+        
+        for key, action in default_shortcuts:
+            row_frame = ttk.Frame(parent)
+            row_frame.pack(fill=tk.X, padx=20, pady=3)
+            ttk.Label(row_frame, text=key, width=15, font=('微软雅黑', 11, 'bold'), 
+                      foreground='#27ae60').pack(side=tk.LEFT)
+            ttk.Label(row_frame, text=action, font=('微软雅黑', 11)).pack(side=tk.LEFT)
     
     def _change_name(self):
         new_name = self.name_var.get().strip()

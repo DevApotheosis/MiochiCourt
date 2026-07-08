@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class VerdictView(tk.Toplevel):
-    def __init__(self, parent, case, verdict, reason, scores, judge_mood, law_system=None):
+    def __init__(self, parent, case, verdict, reason, scores, judge_mood, law_system=None, player_role='defense'):
         super().__init__(parent)
         self.parent = parent
         self.case = case
@@ -15,6 +15,7 @@ class VerdictView(tk.Toplevel):
         self.scores = scores
         self.judge_mood = judge_mood
         self.law_system = law_system
+        self.player_role = player_role
         self.title('澪地审判庭 - 判决书')
         self.geometry('900x1000')
         self.configure(bg='#f5f5f5')
@@ -154,8 +155,8 @@ class VerdictView(tk.Toplevel):
         verdict_frame = ttk.Frame(doc_frame)
         verdict_frame.pack(fill=tk.X, pady=10)
         
-        verdict_result = '有罪' if self.verdict == 'major' else '无罪'
-        verdict_color = '#c0392b' if self.verdict == 'major' else '#27ae60'
+        verdict_result = self._get_verdict_label()
+        verdict_color = '#c0392b' if '失败' in verdict_result or '有罪' in verdict_result else '#27ae60'
         
         result_label = ttk.Label(verdict_frame, text=f'判    决：{verdict_result}',
                                  font=('宋体', 24, 'bold'), foreground=verdict_color)
@@ -214,6 +215,12 @@ class VerdictView(tk.Toplevel):
         seal_label = ttk.Label(seal_frame, text='澪地审判庭',
                                font=('宋体', 16, 'bold'), foreground='#c0392b')
         seal_label.pack(side=tk.RIGHT)
+    
+    def _get_verdict_label(self):
+        if self.player_role == 'defense':
+            return '有罪' if self.verdict == 'major' else '无罪'
+        else:
+            return '被告有罪' if self.verdict == 'major' else '被告无罪'
     
     def _get_mood_text(self, mood):
         if mood >= 80:

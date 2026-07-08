@@ -2,7 +2,7 @@
 
 ## 概述
 
-本指南详细介绍如何为《澪地审判庭》开发自定义模组。模组系统允许开发者扩展游戏内容，包括新增案件、法律条文、证据类型和对话内容。
+本指南介绍如何为《澪地审判庭》开发自定义模组。模组系统允许开发者扩展游戏内容，包括新增案件、法律条文、证据类型和对话内容。
 
 ## 文件结构规范
 
@@ -92,7 +92,8 @@ case = Case(
     difficulty=2,
     required_evidence=['ev_001', 'ev_002'],
     key_laws=['law_001'],
-    witnesses=['李四', '王五']
+    witnesses=['李四', '王五'],
+    allow_roles=['defense', 'prosecution']
 )
 ```
 
@@ -116,9 +117,27 @@ case = Case(
         "defendant": {"name": "张三", "role": "被告"},
         "plaintiff": {"name": "科技公司", "role": "原告"}
     },
-    "tags": ["网络犯罪", "刑事案件"]
+    "tags": ["网络犯罪", "刑事案件"],
+    "allow_roles": ["defense", "prosecution"]
 }
 ```
+
+#### allow_roles 字段说明
+
+`allow_roles` 字段用于限制玩家在该案件中可以担任的角色，增加游戏玩法多样性。
+
+| 值 | 说明 |
+|----|------|
+| `defense` | 被告律师 |
+| `prosecution` | 原告律师 |
+
+**示例**:
+
+- 仅允许担任被告律师：`"allow_roles": ["defense"]`
+- 仅允许担任原告律师：`"allow_roles": ["prosecution"]`
+- 两种角色都允许（默认）：`"allow_roles": ["defense", "prosecution"]`
+
+如果玩家选择的角色不在案件的 `allow_roles` 列表中，系统会显示权限不足的提示，禁止进入该案件。
 
 ### Evidence API
 
@@ -147,11 +166,11 @@ evidence = Evidence(
 | audio | 音频证据 | 包含录音、语音 |
 | physical | 物证 | 实物证据 |
 | testimony | 证言 | 证人陈述 |
-| digital | 数字证据 | 新增类型，区块链/加密数据 |
-| network | 网络证据 | 新增类型，网络流量分析 |
-| forensic | 取证证据 | 新增类型，司法鉴定报告 |
-| financial | 财务证据 | 新增类型，资金流水 |
-| expert | 专家证言 | 新增类型，专家意见 |
+| digital | 数字证据 | 区块链/加密数据 |
+| network | 网络证据 | 网络流量分析 |
+| forensic | 取证证据 | 司法鉴定报告 |
+| financial | 财务证据 | 资金流水 |
+| expert | 专家证言 | 专家意见 |
 
 ### Law API
 
@@ -217,7 +236,6 @@ manager = ModuleManager()
 manager.install_module('/path/to/my_module')
 manager.load_modules()
 
-# 检查模组是否安装成功
 modules = manager.get_all_modules()
 print(f'已安装模组: {[m.name for m in modules]}')
 ```
@@ -354,21 +372,21 @@ zip -r my_module.zip my_module/
 
 ### 性能优化
 
-1. **数据懒加载**: 只在需要时加载案件数据
-2. **图片压缩**: 使用合适的图片格式和尺寸
-3. **缓存机制**: 缓存已加载的模组数据
+1. 数据懒加载: 只在需要时加载案件数据
+2. 图片压缩: 使用合适的图片格式和尺寸
+3. 缓存机制: 缓存已加载的模组数据
 
 ### 兼容性
 
-1. **版本检查**: 在模组中声明兼容的游戏版本
-2. **向后兼容**: 确保旧版本存档能正常加载
-3. **错误处理**: 添加完善的错误处理和回退机制
+1. 版本检查: 在模组中声明兼容的游戏版本
+2. 向后兼容: 确保旧版本存档能正常加载
+3. 错误处理: 添加完善的错误处理和回退机制
 
 ### 安全性
 
-1. **数据验证**: 验证所有用户输入数据
-2. **路径安全**: 避免路径遍历攻击
-3. **代码审查**: 定期审查模组代码
+1. 数据验证: 验证所有用户输入数据
+2. 路径安全: 避免路径遍历攻击
+3. 代码审查: 定期审查模组代码
 
 ## 常见问题
 

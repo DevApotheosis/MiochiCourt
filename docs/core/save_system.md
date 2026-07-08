@@ -71,10 +71,10 @@ def get_save_by_id(save_id):
 
 自动存档在以下时机触发：
 
-1. **玩家点击"开始游戏"按钮后**
-2. **玩家成功完成一个案件后**
-3. **玩家收集证据时**
-4. **玩家分析证据时**
+1. 玩家点击"开始游戏"按钮后
+2. 玩家成功完成一个案件后
+3. 玩家收集证据时
+4. 玩家分析证据时
 
 ## 关卡数据隔离
 
@@ -102,10 +102,8 @@ case_progress = {
 ```python
 from src.core.save_system import SaveManager
 
-# 创建存档管理器
 save_manager = SaveManager()
 
-# 自动存档
 save_manager.auto_save(
     player_name='林律师',
     current_case_id='case_001',
@@ -119,10 +117,7 @@ save_manager.auto_save(
     case_progress={'case_001': {'status': 'investigation'}}
 )
 
-# 加载自动存档
 save = save_manager.load_game('auto_save')
-
-# 获取所有存档
 saves = save_manager.get_all_saves()
 ```
 

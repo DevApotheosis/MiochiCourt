@@ -1,0 +1,25 @@
+{
+  "dossier_id": "dossier_case_003_20260708_183531",
+  "player_name": "烟澪",
+  "case_id": "case_003",
+  "case_title": "开源软件商业侵权案",
+  "verdict": "innocent",
+  "verdict_reason": "法律适用不当，未能有效辩护。",
+  "evidence_chain": [
+    {
+      "evidence_id": "ev_011",
+      "name": "源代码对比报告",
+      "analyzed": true
+    }
+  ],
+  "witness_statements": {},
+  "trial_scores": {
+    "evidence_points": 15,
+    "law_points": 0,
+    "witness_points": 0,
+    "total": 15
+  },
+  "judge_mood": 60,
+  "created_at": "2026-07-08T18:35:31.078674",
+  "checksum": "58813939b8eee1df51ce1a7dee0f20d5"
+}

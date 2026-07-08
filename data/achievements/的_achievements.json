@@ -1,0 +1,82 @@
+[
+  {
+    "achievement_id": "first_case",
+    "name": "初出茅庐",
+    "description": "完成第一个案件的调查",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "first_verdict",
+    "name": "初次裁决",
+    "description": "在法庭上完成第一次裁决",
+    "unlocked": true,
+    "unlocked_at": "2026-07-08T19:16:18.051293",
+    "icon": null
+  },
+  {
+    "achievement_id": "all_cases",
+    "name": "审判大师",
+    "description": "完成所有案件",
+    "unlocked": true,
+    "unlocked_at": "2026-07-08T19:16:18.051304",
+    "icon": null
+  },
+  {
+    "achievement_id": "perfect_evidence",
+    "name": "完美取证",
+    "description": "在一个案件中收集所有证据",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "high_trust",
+    "name": "心灵捕手",
+    "description": "将证人信任度提升到100",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "law_expert",
+    "name": "法律专家",
+    "description": "熟悉所有法律条文",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "speed_run",
+    "name": "神速审判",
+    "description": "在30分钟内完成一个案件",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "key_evidence",
+    "name": "关键突破",
+    "description": "发现关键证据",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "analyst",
+    "name": "分析大师",
+    "description": "分析所有收集的证据",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  },
+  {
+    "achievement_id": "module_master",
+    "name": "模组专家",
+    "description": "安装第一个模组",
+    "unlocked": false,
+    "unlocked_at": null,
+    "icon": null
+  }
+]

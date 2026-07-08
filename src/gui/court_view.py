@@ -499,13 +499,13 @@ class CourtView(tk.Frame):
             success_threshold = 30
         
         if total_score >= success_threshold and self.judge_mood >= 40:
-            verdict = 'innocent'
+            verdict = 'innocent' if self.player_role == 'defense' else 'major'
             reason = self._generate_success_reason()
-            outcome_type = 'defense_success' if self.current_case.defendant else 'prosecution_success'
+            outcome_type = 'defense_success' if self.player_role == 'defense' else 'prosecution_success'
         else:
-            verdict = 'major'
+            verdict = 'major' if self.player_role == 'defense' else 'innocent'
             reason = self._generate_failure_reason()
-            outcome_type = 'defense_failure' if self.current_case.defendant else 'prosecution_failure'
+            outcome_type = 'defense_failure' if self.player_role == 'defense' else 'prosecution_failure'
         
         self.current_case.verdict_guilt = verdict
         self.current_case.verdict_reason = reason
@@ -573,7 +573,7 @@ class CourtView(tk.Frame):
         
         from .verdict_view import VerdictView
         verdict_view = VerdictView(self, self.current_case, verdict, reason, trial_scores, self.judge_mood, 
-                                   law_system=self.law_system)
+                                   law_system=self.law_system, player_role=self.player_role)
         verdict_view.wait_window()
         
         from .case_selection import CaseSelection
