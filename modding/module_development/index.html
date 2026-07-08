@@ -906,6 +906,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#allow_roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        allow_roles 字段说明
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1377,7 +1388,7 @@
 
 <h1 id="_1">模组开发指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>本指南详细介绍如何为《澪地审判庭》开发自定义模组。模组系统允许开发者扩展游戏内容，包括新增案件、法律条文、证据类型和对话内容。</p>
+<p>本指南介绍如何为《澪地审判庭》开发自定义模组。模组系统允许开发者扩展游戏内容，包括新增案件、法律条文、证据类型和对话内容。</p>
 <h2 id="_3">文件结构规范<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="_4">模组目录结构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>my_module/                    # 模组根目录（目录名即为module_id）
@@ -1548,7 +1559,8 @@
     <span class="n">difficulty</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">required_evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ev_001&#39;</span><span class="p">,</span> <span class="s1">&#39;ev_002&#39;</span><span class="p">],</span>
     <span class="n">key_laws</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;law_001&#39;</span><span class="p">],</span>
-    <span class="n">witnesses</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span> <span class="s1">&#39;王五&#39;</span><span class="p">]</span>
+    <span class="n">witnesses</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span> <span class="s1">&#39;王五&#39;</span><span class="p">],</span>
+    <span class="n">allow_roles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;defense&#39;</span><span class="p">,</span> <span class="s1">&#39;prosecution&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 <h4 id="_9">案件数据格式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
@@ -1569,9 +1581,37 @@
 <span class="w">        </span><span class="nt">&quot;defendant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;张三&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;被告&quot;</span><span class="p">},</span>
 <span class="w">        </span><span class="nt">&quot;plaintiff&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;科技公司&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;原告&quot;</span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;网络犯罪&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;刑事案件&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;网络犯罪&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;刑事案件&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;allow_roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;defense&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;prosecution&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
+<h4 id="allow_roles">allow_roles 字段说明<a class="headerlink" href="#allow_roles" title="Permanent link">&para;</a></h4>
+<p><code>allow_roles</code> 字段用于限制玩家在该案件中可以担任的角色，增加游戏玩法多样性。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defense</code></td>
+<td>被告律师</td>
+</tr>
+<tr>
+<td><code>prosecution</code></td>
+<td>原告律师</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>:</p>
+<ul>
+<li>仅允许担任被告律师：<code>"allow_roles": ["defense"]</code></li>
+<li>仅允许担任原告律师：<code>"allow_roles": ["prosecution"]</code></li>
+<li>两种角色都允许（默认）：<code>"allow_roles": ["defense", "prosecution"]</code></li>
+</ul>
+<p>如果玩家选择的角色不在案件的 <code>allow_roles</code> 列表中，系统会显示权限不足的提示，禁止进入该案件。</p>
 <h3 id="evidence-api">Evidence API<a class="headerlink" href="#evidence-api" title="Permanent link">&para;</a></h3>
 <h4 id="_10">创建证据<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.evidence</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evidence</span>
@@ -1624,27 +1664,27 @@
 <tr>
 <td>digital</td>
 <td>数字证据</td>
-<td>新增类型，区块链/加密数据</td>
+<td>区块链/加密数据</td>
 </tr>
 <tr>
 <td>network</td>
 <td>网络证据</td>
-<td>新增类型，网络流量分析</td>
+<td>网络流量分析</td>
 </tr>
 <tr>
 <td>forensic</td>
 <td>取证证据</td>
-<td>新增类型，司法鉴定报告</td>
+<td>司法鉴定报告</td>
 </tr>
 <tr>
 <td>financial</td>
 <td>财务证据</td>
-<td>新增类型，资金流水</td>
+<td>资金流水</td>
 </tr>
 <tr>
 <td>expert</td>
 <td>专家证言</td>
-<td>新增类型，专家意见</td>
+<td>专家意见</td>
 </tr>
 </tbody>
 </table>
@@ -1694,7 +1734,6 @@ touch<span class="w"> </span>module.json
 <span class="n">manager</span><span class="o">.</span><span class="n">install_module</span><span class="p">(</span><span class="s1">&#39;/path/to/my_module&#39;</span><span class="p">)</span>
 <span class="n">manager</span><span class="o">.</span><span class="n">load_modules</span><span class="p">()</span>
 
-<span class="c1"># 检查模组是否安装成功</span>
 <span class="n">modules</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">get_all_modules</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;已安装模组: </span><span class="si">{</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">modules</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
@@ -1803,21 +1842,21 @@ touch<span class="w"> </span>module.json
 <h2 id="_16">最佳实践<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <h3 id="_17">性能优化<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>数据懒加载</strong>: 只在需要时加载案件数据</li>
-<li><strong>图片压缩</strong>: 使用合适的图片格式和尺寸</li>
-<li><strong>缓存机制</strong>: 缓存已加载的模组数据</li>
+<li>数据懒加载: 只在需要时加载案件数据</li>
+<li>图片压缩: 使用合适的图片格式和尺寸</li>
+<li>缓存机制: 缓存已加载的模组数据</li>
 </ol>
 <h3 id="_18">兼容性<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>版本检查</strong>: 在模组中声明兼容的游戏版本</li>
-<li><strong>向后兼容</strong>: 确保旧版本存档能正常加载</li>
-<li><strong>错误处理</strong>: 添加完善的错误处理和回退机制</li>
+<li>版本检查: 在模组中声明兼容的游戏版本</li>
+<li>向后兼容: 确保旧版本存档能正常加载</li>
+<li>错误处理: 添加完善的错误处理和回退机制</li>
 </ol>
 <h3 id="_19">安全性<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>数据验证</strong>: 验证所有用户输入数据</li>
-<li><strong>路径安全</strong>: 避免路径遍历攻击</li>
-<li><strong>代码审查</strong>: 定期审查模组代码</li>
+<li>数据验证: 验证所有用户输入数据</li>
+<li>路径安全: 避免路径遍历攻击</li>
+<li>代码审查: 定期审查模组代码</li>
 </ol>
 <h2 id="_20">常见问题<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
 <h3 id="q">Q: 模组安装后不显示怎么办？<a class="headerlink" href="#q" title="Permanent link">&para;</a></h3>

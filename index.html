@@ -952,12 +952,12 @@
 
 <h1 id="-">澪地审判庭 - 开发文档<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
 <h2 id="_1">项目简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>《澪地审判庭》是一款法庭为主题的文字冒险游戏。玩家扮演一名律师，通过收集证据（实物、文档、音频、视频、证言），在法庭依据相关法律法规，顺利完成辩护或诉讼。</p>
+<p>《澪地审判庭》是一款法庭主题的文字冒险游戏。玩家扮演律师，通过收集证据（实物、文档、音频、视频、证言），在法庭依据法律法规完成辩护或诉讼。</p>
 <h2 id="_2">技术栈<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>语言</strong>: Python 3.10+</li>
 <li><strong>GUI框架</strong>: Tkinter</li>
-<li><strong>数据库</strong>: JSON文件存储</li>
+<li><strong>数据存储</strong>: JSON文件</li>
 </ul>
 <h2 id="_3">项目结构<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>city_qes/
@@ -980,7 +980,6 @@
 <ol>
 <li><strong>案件调查系统</strong>: 收集、分析各种类型的证据</li>
 <li><strong>法庭审判系统</strong>: 提出证据、引用法律、盘问证人</li>
-<li><strong>AI调用机制</strong>: 支持AI模拟审判与证人盘问</li>
 <li><strong>双结局判定</strong>: 辩护/诉讼成功或失败</li>
 <li><strong>成就系统</strong>: 解锁各种游戏成就</li>
 <li><strong>等级系统</strong>: 律师等级晋升体系</li>
@@ -996,7 +995,7 @@ python<span class="w"> </span>run.py
 <ul>
 <li><a href="core/">核心模块</a>: 角色、存档、成就、案件、证据、法律、对话系统</li>
 <li><a href="gui/">GUI模块</a>: 主菜单、案件选择、调查、法庭、法律查询等界面</li>
-<li><a href="mechanics/">游戏机制</a>: 审判流程、AI调用、双结局判定、等级系统</li>
+<li><a href="mechanics/">游戏机制</a>: 审判流程、双结局判定、等级系统</li>
 <li><a href="standards/">开发规范</a>: 代码规范、文件结构、数据格式、图片资源</li>
 <li><a href="data/">数据目录</a>: 案件、证据、法律、对话数据格式说明</li>
 </ul>
