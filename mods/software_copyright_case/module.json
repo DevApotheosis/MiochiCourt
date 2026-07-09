@@ -1,6 +1,6 @@
 {
-    "module_id": "software_copyright_case",
-    "name": "软件著作权纠纷案",
+    "module_id": "ospl_luanlun_case",
+    "name": "OS&PL强奸案",
     "version": "1.0.0",
     "author": "LegalDev",
     "description": "基于最高人民法院指导性案例279号开发的软件著作权侵权案件模组，包含案件数据、证据、法律条文和对话内容。",

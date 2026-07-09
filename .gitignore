@@ -8,3 +8,5 @@ test_output.txt
 *.pyd
 *.spec
 *create_dirs.py
+*build/
+*dist/

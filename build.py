@@ -51,13 +51,14 @@ import os
 
 sys.setrecursionlimit(5000)
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = r'{base_dir}'
 
 a = Analysis(
     [os.path.join(base_dir, 'run.py')],
     pathex=[base_dir],
     binaries=[],
     datas={include_files},
+
     hiddenimports=[
         'src.core',
         'src.gui',
@@ -137,7 +138,6 @@ coll = COLLECT(
         spec_file,
         '--distpath', output_dir,
         '--workpath', build_dir,
-        '--specpath', spec_dir,
     ]
     
     try:

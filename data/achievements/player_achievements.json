@@ -11,16 +11,16 @@
     "achievement_id": "first_verdict",
     "name": "初次裁决",
     "description": "在法庭上完成第一次裁决",
-    "unlocked": false,
-    "unlocked_at": null,
+    "unlocked": true,
+    "unlocked_at": "2026-07-07T21:30:24.265236",
     "icon": null
   },
   {
     "achievement_id": "all_cases",
     "name": "审判大师",
     "description": "完成所有案件",
-    "unlocked": false,
-    "unlocked_at": null,
+    "unlocked": true,
+    "unlocked_at": "2026-07-07T21:30:24.265246",
     "icon": null
   },
   {
@@ -60,7 +60,7 @@
     "name": "关键突破",
     "description": "发现关键证据",
     "unlocked": true,
-    "unlocked_at": "2026-07-08T20:38:28.861990",
+    "unlocked_at": "2026-07-07T21:30:18.610425",
     "icon": null
   },
   {

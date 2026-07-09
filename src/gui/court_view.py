@@ -613,8 +613,9 @@ class CourtView(tk.Frame):
         config_manager = ConfigManager()
         shortcuts = config_manager.get_shortcuts()
         
-        self.bind(shortcuts['back'], lambda e: self.on_back())
-        self.bind(shortcuts['escape'], lambda e: self.on_back())
+        root = self.winfo_toplevel()
+        root.bind(shortcuts['back'], lambda e: self.on_back())
+        root.bind(shortcuts['escape'], lambda e: self.on_back())
     
     def on_back(self):
         from .investigation_view import InvestigationView

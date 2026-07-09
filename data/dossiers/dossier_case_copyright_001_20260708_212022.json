@@ -1,0 +1,25 @@
+{
+  "dossier_id": "dossier_case_copyright_001_20260708_212022",
+  "player_name": "玩家",
+  "case_id": "case_copyright_001",
+  "case_title": "侵害计算机软件著作权纠纷案",
+  "verdict": "major",
+  "verdict_reason": "辩方未能提供充分证据反驳控方指控。",
+  "evidence_chain": [
+    {
+      "evidence_id": "ev_copyright_002",
+      "name": "软件版权信息截图",
+      "analyzed": false
+    }
+  ],
+  "witness_statements": {},
+  "trial_scores": {
+    "evidence_points": 0,
+    "law_points": 0,
+    "witness_points": 0,
+    "total": 0
+  },
+  "judge_mood": 50,
+  "created_at": "2026-07-08T21:20:22.981298",
+  "checksum": "28c00628fd7c84d1bc676b79034f12f5"
+}

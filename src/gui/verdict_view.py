@@ -18,6 +18,7 @@ class VerdictView(tk.Toplevel):
         self.player_role = player_role
         self.title('澪地审判庭 - 判决书')
         self.geometry('900x1000')
+        self.resizable(False, False)
         self.configure(bg='#f5f5f5')
         self._setup_ui()
     

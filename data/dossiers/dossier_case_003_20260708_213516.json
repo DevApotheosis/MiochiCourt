@@ -1,0 +1,35 @@
+{
+  "dossier_id": "dossier_case_003_20260708_213516",
+  "player_name": "玩家",
+  "case_id": "case_003",
+  "case_title": "开源软件商业侵权案",
+  "verdict": "major",
+  "verdict_reason": "控方证据存在重大瑕疵，无法排除合理怀疑。",
+  "evidence_chain": [
+    {
+      "evidence_id": "ev_011",
+      "name": "源代码对比报告",
+      "analyzed": true
+    },
+    {
+      "evidence_id": "ev_012",
+      "name": "GitHub版本历史",
+      "analyzed": true
+    },
+    {
+      "evidence_id": "ev_013",
+      "name": "商业授权协议",
+      "analyzed": true
+    }
+  ],
+  "witness_statements": {},
+  "trial_scores": {
+    "evidence_points": 45,
+    "law_points": 15,
+    "witness_points": 40,
+    "total": 100
+  },
+  "judge_mood": 85,
+  "created_at": "2026-07-08T21:35:16.146940",
+  "checksum": "6a68ca1a8e5d1a31f3bf422540550505"
+}
