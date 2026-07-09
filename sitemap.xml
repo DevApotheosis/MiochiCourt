@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://example.com/docs/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/core/achievements/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/core/character/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/core/save_system/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/mechanics/rank_system/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/mechanics/trial_flow/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/mechanics/verdict_system/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/modding/module_development/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
     <url>
          <loc>https://example.com/docs/standards/image_resources/</loc>
-         <lastmod>2026-07-08</lastmod>
+         <lastmod>2026-07-09</lastmod>
     </url>
 </urlset>
